@@ -30,7 +30,7 @@ const PostForm = () => {
     };
 
     return (
-        <div className="container mt-3">
+        <div className="mt-3">
             <form onSubmit={handlePost} encType="multipart/form-data">
                 <label htmlFor="text" className="form-label">
                     Message
