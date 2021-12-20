@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
+import Login from "./components/Login";
 import PostForm from "./components/PostForm";
 import Feed from "./components/Feed";
 
@@ -20,6 +21,7 @@ const Galaxy = () => {
                                 path="/register"
                                 element={<Register />}
                             ></Route>
+                            <Route path="/login" element={<Login />}></Route>
                             <Route path="/" element={<PostForm />}></Route>
                         </Routes>
                         <Feed />
