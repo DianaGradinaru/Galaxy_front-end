@@ -5,13 +5,16 @@ import Star from "./Star";
 
 const Feed = () => {
     const [posts, setPosts] = useAtom(state.posts);
+    const [user, setUser] = useAtom(state.user);
 
     useEffect(() => {
         const getPosts = async () => {
             const req = await fetch(process.env.REACT_APP_SERVER_URL);
             const res = await req.json();
 
-            setPosts(res);
+            if (res) {
+                setPosts(res);
+            }
         };
 
         getPosts();
@@ -19,6 +22,9 @@ const Feed = () => {
 
     return (
         <div className="mt-3">
+            <pre>
+                <code>{JSON.stringify(user, null, 4)}</code>
+            </pre>
             {!posts.length ? "" : posts.map((p) => <Star key={p.id} {...p} />)}
         </div>
     );
