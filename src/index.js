@@ -24,9 +24,16 @@ const Galaxy = () => {
                             ></Route>
                             <Route path="/login" element={<Login />}></Route>
                             <Route path="/logout" element={<Logout />}></Route>
-                            <Route path="/" element={<PostForm />}></Route>
+                            <Route
+                                path="/"
+                                element={
+                                    <>
+                                        <PostForm />
+                                        <Feed />
+                                    </>
+                                }
+                            ></Route>
                         </Routes>
-                        <Feed />
                     </div>
                     <div className="col-md-3">Sidebar</div>
                 </div>

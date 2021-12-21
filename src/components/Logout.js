@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const Logout = () => {
-    const [user, setUser] = useAtom(state.user);
+    const [, setUser] = useAtom(state.user);
     const navigate = useNavigate();
 
     useEffect(() => {
         setUser({});
         navigate("/");
-    }, []);
+    });
 
     return null;
 };

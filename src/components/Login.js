@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [user, setUser] = useAtom(state.user);
+    const [, setUser] = useAtom(state.user);
     const navigate = useNavigate();
 
     useEffect(() => {
         setUser({});
-    }, []);
+    });
 
     const handleLogin = async (e) => {
         e.preventDefault();

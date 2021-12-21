@@ -5,7 +5,6 @@ import Star from "./Star";
 
 const Feed = () => {
     const [posts, setPosts] = useAtom(state.posts);
-    const [user, setUser] = useAtom(state.user);
 
     useEffect(() => {
         const getPosts = async () => {
@@ -18,13 +17,10 @@ const Feed = () => {
         };
 
         getPosts();
-    }, []);
+    });
 
     return (
         <div className="mt-3">
-            <pre>
-                <code>{JSON.stringify(user, null, 4)}</code>
-            </pre>
             {!posts.length ? "" : posts.map((p) => <Star key={p.id} {...p} />)}
         </div>
     );

@@ -6,7 +6,6 @@ const Navbar = () => {
     const [user] = useAtom(state.user);
 
     const isUser = user.id !== undefined;
-    console.log(isUser);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark text-light bg-dark">

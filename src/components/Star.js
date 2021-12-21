@@ -1,6 +1,14 @@
-const Star = ({ id, text, image, createdAt, updatedAt }) => {
+import moment from "moment";
+const Star = ({ id, text, image, createdat, name }) => {
+    const created = moment(createdat).fromNow();
+
     return (
-        <div className="card mb-3">
+        <div className="card mb-5">
+            {!!name && (
+                <div className="card-header">
+                    <strong>{name}</strong>
+                </div>
+            )}
             {!!image && (
                 <img
                     src={"data:image/png;base64," + image}
@@ -9,8 +17,10 @@ const Star = ({ id, text, image, createdAt, updatedAt }) => {
                 />
             )}
             <div className="card-body">
-                {/* <h5 className="card-title">Card title</h5> */}
                 <p className="card-text">{text}</p>
+            </div>
+            <div className="card-footer text-muted">
+                <small title={createdat}>{created}</small>
             </div>
         </div>
     );

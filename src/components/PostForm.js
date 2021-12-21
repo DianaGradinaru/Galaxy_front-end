@@ -5,11 +5,13 @@ import state from "../state";
 const PostForm = () => {
     const [text, setText] = useState("");
     const [posts, setPosts] = useAtom(state.posts);
+    const [user] = useAtom(state.user);
 
     const handlePost = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
+        formData.append("userid", user.id);
 
         const req = await fetch(process.env.REACT_APP_SERVER_URL, {
             method: "POST",
@@ -28,6 +30,8 @@ const PostForm = () => {
         e.preventDefault();
         setText(e.target.value);
     };
+
+    if (user.id === undefined) return null;
 
     return (
         <div className="mt-3">
