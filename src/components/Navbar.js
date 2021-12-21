@@ -3,9 +3,10 @@ import { useAtom } from "jotai";
 import state from "../state";
 
 const Navbar = () => {
-    const [user, setUser] = useAtom(state.user);
+    const [user] = useAtom(state.user);
 
-    console.log(state);
+    const isUser = user.id !== undefined;
+    console.log(isUser);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark text-light bg-dark">
@@ -38,7 +39,7 @@ const Navbar = () => {
                     className="collapse navbar-collapse"
                     id="navbarSupportedContent"
                 >
-                    {!!user ? (
+                    {isUser && (
                         <>
                             <span className="navbar-text">{user.name}</span>
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -49,7 +50,8 @@ const Navbar = () => {
                                 </li>
                             </ul>
                         </>
-                    ) : (
+                    )}
+                    {!isUser && (
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li>
                                 <Link
