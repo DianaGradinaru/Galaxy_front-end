@@ -1,15 +1,21 @@
 import { useAtom } from "jotai";
 import state from "../state";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "bootstrap";
 
 const Login = () => {
     const [, setUser] = useAtom(state.user);
     const navigate = useNavigate();
 
+    const modalRef = useRef(null);
+    const modal = modalRef.current
+        ? new Modal(modalRef.current, { backdrop: true })
+        : null;
+
     useEffect(() => {
         setUser({});
-    });
+    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -26,37 +32,47 @@ const Login = () => {
         if (req.ok) {
             const res = await req.json();
             setUser(res.user);
+            modal.hide();
+            document
+                .querySelector(".modal-backdrop.fade.show")
+                .classList.remove("show");
             navigate("/");
         }
     };
 
     return (
-        <div className="loginModal" tabIndex="-1">
+        <div
+            className="modal fade"
+            id="loginmodal"
+            tabIndex="-1"
+            aria-labelledby="loginmodaltitle"
+            aria-hidden="true"
+            ref={modalRef}
+        >
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">Login</h5>
+                        <h5 id="loginmodaltitle" className="modal-title">
+                            Login
+                        </h5>
                     </div>
                     <div className="modal-body">
                         <form onSubmit={handleLogin}>
                             <div className="mb-3">
-                                <label
-                                    htmlFor="exampleInputEmail1"
-                                    className="form-label"
-                                >
+                                <label htmlFor="email" className="form-label">
                                     Email address
                                 </label>
                                 <input
                                     type="email"
                                     name="email"
                                     className="form-control"
-                                    id="exampleInputEmail1"
+                                    id="email"
                                     aria-describedby="emailHelp"
                                 />
                             </div>
                             <div className="mb-3">
                                 <label
-                                    htmlFor="exampleInputPassword1"
+                                    htmlFor="password"
                                     className="form-label"
                                 >
                                     Your password
@@ -65,7 +81,7 @@ const Login = () => {
                                     type="password"
                                     name="password"
                                     className="form-control"
-                                    id="exampleInputPassword1"
+                                    id="password"
                                 />
                             </div>
 

@@ -17,7 +17,7 @@ const Feed = () => {
         };
 
         getPosts();
-    });
+    }, []);
 
     return (
         <div className="mt-3">

@@ -31,7 +31,7 @@ const PostForm = () => {
         setText(e.target.value);
     };
 
-    if (user.id === undefined) return null;
+    if (!user || !user.id) return null;
 
     return (
         <div className="mt-3">

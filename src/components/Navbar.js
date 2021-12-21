@@ -5,7 +5,7 @@ import state from "../state";
 const Navbar = () => {
     const [user] = useAtom(state.user);
 
-    const isUser = user.id !== undefined;
+    const isUser = user && user.id;
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark text-light bg-dark">
@@ -56,14 +56,19 @@ const Navbar = () => {
                                 <Link
                                     className="nav-link"
                                     to="/login"
-                                    data-bs-toggle="loginModal"
-                                    data-bs-target="#myModal"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#loginmodal"
                                 >
                                     Login
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/register">
+                                <Link
+                                    className="nav-link"
+                                    to="/register"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#registermodal"
+                                >
                                     Register
                                 </Link>
                             </li>
