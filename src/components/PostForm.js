@@ -60,7 +60,7 @@ const PostForm = () => {
                     id="file"
                     className="form-control"
                 />
-                <button className="btn btn-primary mt-3" type="submit">
+                <button className="btn btn-secondary mt-3" type="submit">
                     Post
                 </button>
             </form>

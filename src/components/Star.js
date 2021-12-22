@@ -9,6 +9,9 @@ const Star = ({ id, text, image, createdat, name }) => {
                     <strong>{name}</strong>
                 </div>
             )}
+            <div className="card-body">
+                <p className="card-text">{text}</p>
+            </div>
             {!!image && (
                 <img
                     src={"data:image/png;base64," + image}
@@ -16,9 +19,7 @@ const Star = ({ id, text, image, createdat, name }) => {
                     alt="..."
                 />
             )}
-            <div className="card-body">
-                <p className="card-text">{text}</p>
-            </div>
+
             <div className="card-footer text-muted">
                 <small title={createdat}>{created}</small>
             </div>

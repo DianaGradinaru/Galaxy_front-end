@@ -30,8 +30,6 @@ const Galaxy = () => {
                                     <>
                                         <PostForm />
                                         <Feed />
-                                        <Login />
-                                        <Register />
                                     </>
                                 }
                             ></Route>

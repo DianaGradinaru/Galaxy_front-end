@@ -53,22 +53,12 @@ const Navbar = () => {
                     {!isUser && (
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li>
-                                <Link
-                                    className="nav-link"
-                                    to="/login"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#loginmodal"
-                                >
+                                <Link className="nav-link" to="/login">
                                     Login
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link
-                                    className="nav-link"
-                                    to="/register"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#registermodal"
-                                >
+                                <Link className="nav-link" to="/register">
                                     Register
                                 </Link>
                             </li>
