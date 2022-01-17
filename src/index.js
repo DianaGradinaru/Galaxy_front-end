@@ -75,7 +75,6 @@ const Galaxy = () => {
                         <div className="col-md-3">Sidebar</div>
                     </div>
                 </div>
-                <UserPage />
             </MuiThemeProvider>
         </>
     );

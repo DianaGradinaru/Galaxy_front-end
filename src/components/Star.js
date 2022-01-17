@@ -25,18 +25,19 @@ const Star = ({ id, text, image, createdat, name }) => {
                         />
                     )}
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography
+                            variant="body1"
+                            color="text.secondary"
+                            style={{ wordWrap: "break-word" }}
+                        >
                             {text}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
-                        <small title={createdat}>{created}</small>
-                    </Button>
+                    <Typography gutterBottom variant="body1" component="div">
+                        {name} - <small title={createdat}>{created}</small>
+                    </Typography>
                 </CardActions>
             </Card>
         </Box>

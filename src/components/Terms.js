@@ -5,6 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { Typography } from "@material-ui/core";
 
 export default function ScrollDialog() {
     const [open, setOpen] = React.useState(false);
@@ -31,9 +32,15 @@ export default function ScrollDialog() {
 
     return (
         <div>
-            <Button onClick={handleClickOpen("paper")}>
-                Terms & Conditions
-            </Button>
+            {/* <Button onClick={handleClickOpen("paper")}> */}
+            <Typography
+                variant="body1"
+                gutterBottom
+                onClick={handleClickOpen("paper")}
+            >
+                I've read and accept the Terms & Conditions
+            </Typography>
+            {/* </Button> */}
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -402,9 +409,8 @@ export default function ScrollDialog() {
                 </DialogContent>
                 <DialogActions>
                     <Button variant="outlined" onClick={handleClose}>
-                        I Agree
+                        Close
                     </Button>
-                    <Button onClick={handleClose}>Cancel</Button>
                 </DialogActions>
             </Dialog>
         </div>

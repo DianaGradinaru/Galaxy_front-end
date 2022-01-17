@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import state from "../state";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Terms from "./Terms";
 
@@ -45,6 +45,7 @@ const Register = () => {
                                 id="username"
                                 name="name"
                                 aria-describedby="usernameHelp"
+                                required
                             />
                         </div>
 
@@ -58,6 +59,7 @@ const Register = () => {
                                 id="email"
                                 name="email"
                                 aria-describedby="emailHelp"
+                                required
                             />
                             <div id="emailHelp" className="form-text">
                                 We'll never share your email with anyone else.
@@ -71,6 +73,7 @@ const Register = () => {
                                 type="password"
                                 className="form-control"
                                 id="password"
+                                required
                                 name="password"
                             />
                         </div>
@@ -84,16 +87,17 @@ const Register = () => {
                             className="form-control"
                         />
                         <div className="mb-3 mt-3 form-check">
-                            {/* <input
+                            <input
                                 type="checkbox"
                                 className="form-check-input"
                                 id="terms"
                                 name="terms"
-                            /> */}
-                            {/* <label className="form-check-label" htmlFor="terms">
-                                I read and accept the <Terms />
-                            </label> */}
-                            <Terms />
+                                required
+                            />
+                            <label className="form-check-label" htmlFor="terms">
+                                {/* I've read and accept the */}
+                                <Terms />
+                            </label>
                         </div>
                         <button type="submit" className="btn btn-secondary">
                             Submit
