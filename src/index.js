@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -13,11 +12,12 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import PostForm from "./components/PostForm";
 import Feed from "./components/Feed";
+import UserPage from "./components/UserPage";
 
 const themeLight = createMuiTheme({
     palette: {
         background: {
-            default: "#e4f0e2",
+            default: "#F4FFFF",
         },
     },
 });
@@ -25,7 +25,7 @@ const themeLight = createMuiTheme({
 const themeDark = createMuiTheme({
     palette: {
         background: {
-            default: "#222222",
+            default: "#2A2D2E",
         },
         text: {
             primary: "#ffffff",
@@ -75,6 +75,7 @@ const Galaxy = () => {
                         <div className="col-md-3">Sidebar</div>
                     </div>
                 </div>
+                <UserPage />
             </MuiThemeProvider>
         </>
     );

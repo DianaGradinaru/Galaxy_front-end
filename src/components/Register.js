@@ -1,6 +1,8 @@
 import { useAtom } from "jotai";
 import state from "../state";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
+import Terms from "./Terms";
 
 const Register = () => {
     const [, setUser] = useAtom(state.user);
@@ -72,16 +74,26 @@ const Register = () => {
                                 name="password"
                             />
                         </div>
-                        <div className="mb-3 form-check">
-                            <input
+                        <label className="form-label mt-2" htmlFor="file">
+                            Profile picture
+                        </label>
+                        <input
+                            type="file"
+                            name="file"
+                            id="file"
+                            className="form-control"
+                        />
+                        <div className="mb-3 mt-3 form-check">
+                            {/* <input
                                 type="checkbox"
                                 className="form-check-input"
                                 id="terms"
                                 name="terms"
-                            />
-                            <label className="form-check-label" htmlFor="terms">
-                                I read and accept the Terms and Conditions
-                            </label>
+                            /> */}
+                            {/* <label className="form-check-label" htmlFor="terms">
+                                I read and accept the <Terms />
+                            </label> */}
+                            <Terms />
                         </div>
                         <button type="submit" className="btn btn-secondary">
                             Submit

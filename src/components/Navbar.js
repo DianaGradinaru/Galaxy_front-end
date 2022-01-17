@@ -47,6 +47,11 @@ const Navbar = () => {
                                         Log out
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link className="nav-link" to="/profile">
+                                        Profile page
+                                    </Link>
+                                </li>
                             </ul>
                         </>
                     )}
