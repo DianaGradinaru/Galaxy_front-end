@@ -8,8 +8,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Button } from "@mui/material";
 
 import Modal from "@mui/material/Modal";
+
+import { useAtom } from "jotai";
+import state from "../state";
 
 const style = {
     position: "absolute",
@@ -24,7 +29,10 @@ const style = {
     p: 4,
 };
 
-const Star = ({ id, text, image, createdat, name }) => {
+const Star = ({ id, user_id, text, image, createdat, name }) => {
+    const [user] = useAtom(state.user);
+    const isUser = user && user.id && user.name === name;
+
     const created = moment(createdat).fromNow();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -56,6 +64,11 @@ const Star = ({ id, text, image, createdat, name }) => {
                     <Typography gutterBottom variant="body1" component="div">
                         {name} - <small title={createdat}>{created}</small>
                     </Typography>
+                    {isUser && (
+                        <Box display="flex" justifyContent="flex-end">
+                            <DeleteIcon color="action" />
+                        </Box>
+                    )}
                 </CardActions>
             </Card>
             <Modal
