@@ -6,12 +6,29 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
 
+import Modal from "@mui/material/Modal";
+
+const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "auto",
+    height: "auto",
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+};
+
 const Star = ({ id, text, image, createdat, name }) => {
     const created = moment(createdat).fromNow();
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
         <Box m={2} pt={3}>
@@ -20,8 +37,9 @@ const Star = ({ id, text, image, createdat, name }) => {
                     {image && (
                         <CardMedia
                             component="img"
-                            height="300"
+                            height="345"
                             image={"data:image/png;base64," + image}
+                            onClick={handleOpen}
                         />
                     )}
                     <CardContent>
@@ -40,6 +58,20 @@ const Star = ({ id, text, image, createdat, name }) => {
                     </Typography>
                 </CardActions>
             </Card>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Card sx={style}>
+                    <CardMedia
+                        component="img"
+                        height="auto"
+                        image={"data:image/png;base64," + image}
+                    />
+                </Card>
+            </Modal>
         </Box>
     );
 };
