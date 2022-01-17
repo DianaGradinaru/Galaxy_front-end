@@ -9,6 +9,7 @@ const Logout = () => {
 
     useEffect(() => {
         setUser({});
+        localStorage.removeItem("loggedUser");
         navigate("/");
     }, []);
 

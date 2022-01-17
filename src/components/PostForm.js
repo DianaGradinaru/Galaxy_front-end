@@ -20,7 +20,7 @@ const PostForm = () => {
 
         if (req.ok) {
             const res = await req.json();
-            setPosts([res, ...posts]);
+            setPosts([{ ...res, name: user.name }, ...posts]);
             e.target.reset();
             setText("");
         }

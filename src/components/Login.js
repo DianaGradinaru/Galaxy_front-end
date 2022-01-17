@@ -26,6 +26,7 @@ const Login = () => {
         if (req.ok) {
             const res = await req.json();
             setUser(res.user);
+            localStorage.setItem("loggedUser", JSON.stringify(res.user));
             navigate("/");
         }
     };
