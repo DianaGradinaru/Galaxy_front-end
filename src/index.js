@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import PostForm from "./components/PostForm";
 import Feed from "./components/Feed";
+import LeftMenu from "./components/LeftMenu";
 
 const Galaxy = () => {
     return (
@@ -15,7 +16,10 @@ const Galaxy = () => {
             <Navbar />
             <div className="container">
                 <div className="row mt-5">
-                    <div className="col-md-3">Sidebar</div>
+                    <div className="col-md-3 mt-5">
+                        <LeftMenu />
+                    </div>
+
                     <div className="col-md-6">
                         <Routes>
                             <Route

@@ -1,22 +1,17 @@
-import { useState } from "react";
 import { useAtom } from "jotai";
 import state from "../state";
 
 const UserPage = () => {
     const [user] = useAtom(state.user);
 
-    console.log(user);
+    const fetchUserData = async () => {
+        const request = await fetch(
+            process.env.REACT_APP_SERVER_URL + "profile"
+        );
+        const response = await request.json();
+    };
 
-    return (
-        <div>
-            <ul>
-                <li>{user.name}</li>
-                <li>{user.id}</li>
-                <li>{user.email}</li>
-                <li>{user.profile_pic}</li>
-            </ul>
-        </div>
-    );
+    return <div></div>;
 };
 
 export default UserPage;
