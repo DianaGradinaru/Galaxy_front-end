@@ -59,12 +59,12 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
 
     return (
         <Box m={2} pt={3}>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 545 }}>
                 <CardActionArea>
                     {image && (
                         <CardMedia
                             component="img"
-                            height="345"
+                            height="445"
                             image={"data:image/png;base64," + image}
                             onClick={handleOpen}
                         />

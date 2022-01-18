@@ -95,7 +95,6 @@ const Register = () => {
                                 required
                             />
                             <label className="form-check-label" htmlFor="terms">
-                                {/* I've read and accept the */}
                                 <Terms />
                             </label>
                         </div>
