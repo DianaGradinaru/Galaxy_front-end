@@ -34,11 +34,20 @@ const Galaxy = () => {
                                 element={<UserPage />}
                             ></Route>
                             <Route
+                                path="/profile/myPosts"
+                                element={
+                                    <>
+                                        <PostForm />
+                                        <Feed is_private={true} />
+                                    </>
+                                }
+                            ></Route>
+                            <Route
                                 path="/"
                                 element={
                                     <>
                                         <PostForm />
-                                        <Feed />
+                                        <Feed is_private={false} />
                                     </>
                                 }
                             ></Route>

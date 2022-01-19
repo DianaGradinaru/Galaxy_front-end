@@ -1,5 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -26,10 +27,6 @@ const LeftMenu = () => {
     const [open, setOpen] = React.useState(false);
     const [user] = useAtom(state.user);
     const isUser = user && user.id;
-    // let userName = state.user.init.name;
-    // let userAvatar = state.user.init.profile_pic;
-    // let count = state.user.init.count;
-    console.log(user);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -60,7 +57,10 @@ const LeftMenu = () => {
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton>
+                                <ListItemButton
+                                    component="a"
+                                    href="/profile/myPosts"
+                                >
                                     <ListItemIcon>
                                         <AutoAwesomeIcon />
                                     </ListItemIcon>

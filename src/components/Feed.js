@@ -3,13 +3,29 @@ import { useAtom } from "jotai";
 import state from "../state";
 import Star from "./Star";
 
-const Feed = () => {
+const Feed = ({ is_private = false }) => {
     const [posts, setPosts] = useAtom(state.posts);
+    const [user] = useAtom(state.user);
 
     useEffect(() => {
         const getPosts = async () => {
-            const req = await fetch(process.env.REACT_APP_SERVER_URL);
+            let url =
+                process.env.REACT_APP_SERVER_URL +
+                (is_private ? "profile/myPosts" : "");
+            let requestOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id: user.id }),
+            };
+
+            const req = await fetch(
+                url,
+                is_private ? requestOptions : { method: "GET" }
+            );
             const res = await req.json();
+            console.log(res);
 
             if (res) {
                 setPosts(res);
@@ -17,7 +33,7 @@ const Feed = () => {
         };
 
         getPosts();
-    }, []);
+    }, [is_private]);
 
     return (
         <div className="mt-3">
