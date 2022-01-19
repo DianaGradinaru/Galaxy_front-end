@@ -16,21 +16,20 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import { Grid } from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import { useAtom } from "jotai";
 import state from "../state";
 
-import UserPage from "./UserPage";
-
 const LeftMenu = () => {
     const [open, setOpen] = React.useState(false);
     const [user] = useAtom(state.user);
     const isUser = user && user.id;
-    let userName = state.user.init.name;
-    let userAvatar = state.user.init.profile_pic;
+    // let userName = state.user.init.name;
+    // let userAvatar = state.user.init.profile_pic;
+    // let count = state.user.init.count;
+    console.log(user);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -102,7 +101,7 @@ const LeftMenu = () => {
                         <DialogContent>
                             <DialogContentText id="alert-dialog-title">
                                 <Typography variant="h6" align="center">
-                                    {userName}
+                                    {user.name}
                                 </Typography>
                                 <Box
                                     display="flex"
@@ -112,13 +111,12 @@ const LeftMenu = () => {
                                     <Avatar
                                         src={
                                             "data:image/png;base64," +
-                                            userAvatar
+                                            user.profile_pic
                                         }
                                         sx={{ width: 100, height: 100 }}
-                                        // align="center"
                                     />
                                 </Box>
-                                My galaxy has # stars.
+                                My galaxy has {user.count} stars.
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>

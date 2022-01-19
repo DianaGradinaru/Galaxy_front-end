@@ -9,6 +9,7 @@ import Logout from "./components/Logout";
 import PostForm from "./components/PostForm";
 import Feed from "./components/Feed";
 import LeftMenu from "./components/LeftMenu";
+import UserPage from "./components/UserPage";
 
 const Galaxy = () => {
     return (
@@ -28,6 +29,10 @@ const Galaxy = () => {
                             ></Route>
                             <Route path="/login" element={<Login />}></Route>
                             <Route path="/logout" element={<Logout />}></Route>
+                            <Route
+                                path="/profile"
+                                element={<UserPage />}
+                            ></Route>
                             <Route
                                 path="/"
                                 element={
