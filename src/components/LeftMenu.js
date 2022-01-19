@@ -16,7 +16,9 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
+import { Grid } from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
+import { Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import { useAtom } from "jotai";
 import state from "../state";
@@ -26,6 +28,9 @@ import UserPage from "./UserPage";
 const LeftMenu = () => {
     const [open, setOpen] = React.useState(false);
     const [user] = useAtom(state.user);
+    const isUser = user && user.id;
+    let userName = state.user.init.name;
+    let userAvatar = state.user.init.profile_pic;
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -35,75 +40,97 @@ const LeftMenu = () => {
     };
 
     return (
-        <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-            <nav aria-label="main mailbox folders">
-                <List>
-                    <ListItem>
-                        <ListItemButton onClick={handleClickOpen}>
-                            <ListItemIcon>
-                                <AccountCircleIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="My Profile" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <AutoAwesomeIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="My Galaxy" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <GroupIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="My Friends" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <DraftsIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="My Messages" />
-                        </ListItemButton>
-                    </ListItem>
-                </List>
-            </nav>
-            <Divider />
-            <nav aria-label="secondary mailbox folders"></nav>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">
-                    {"My Profile"}
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        My username: {state.user.init.name}
-                        <Avatar
-                            src={
-                                "data:image/png;base64," +
-                                state.user.init.profile_pic
-                            }
-                            sx={{ width: 100, height: 100 }}
-                        />
-                        My galaxy has # stars.
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Edit</Button>
-                    <Button onClick={handleClose} autoFocus>
-                        Close
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </Box>
+        <>
+            {" "}
+            {isUser && (
+                <Box
+                    sx={{
+                        width: "100%",
+                        maxWidth: 360,
+                        bgcolor: "background.paper",
+                    }}
+                >
+                    <nav aria-label="main mailbox folders">
+                        <List>
+                            <ListItem>
+                                <ListItemButton onClick={handleClickOpen}>
+                                    <ListItemIcon>
+                                        <AccountCircleIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="My Profile" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <AutoAwesomeIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="My Galaxy" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <GroupIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="My Friends" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        <DraftsIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="My Messages" />
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
+                    </nav>
+                    <Divider />
+                    <nav aria-label="secondary mailbox folders"></nav>
+                    <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-description">
+                            <Typography variant="h6" align="center">
+                                {"About"}
+                            </Typography>
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-title">
+                                <Typography variant="h6" align="center">
+                                    {userName}
+                                </Typography>
+                                <Box
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                >
+                                    <Avatar
+                                        src={
+                                            "data:image/png;base64," +
+                                            userAvatar
+                                        }
+                                        sx={{ width: 100, height: 100 }}
+                                        // align="center"
+                                    />
+                                </Box>
+                                My galaxy has # stars.
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose}>Edit</Button>
+                            <Button onClick={handleClose} autoFocus>
+                                Close
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </Box>
+            )}
+        </>
     );
 };
 
