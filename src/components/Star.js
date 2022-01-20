@@ -32,6 +32,7 @@ const style = {
 };
 
 const Star = ({ id, user_id, text, image, createdat, name }) => {
+    // console.log(id, user_id);
     const [user, setUser] = useAtom(state.user);
     const [posts, setPosts] = useAtom(state.posts);
     const isUser = user && user.id && user.name === name;
@@ -59,6 +60,26 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
 
         setPosts(posts.filter((p) => p.id !== id));
         setUser({ ...user, count: parseInt(user.count) - 1 });
+    };
+
+    const handleFavorites = async () => {
+        const request = await fetch(
+            process.env.REACT_APP_SERVER_URL + "profile/favorites",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    favorited_by: user_id,
+                    star_id: id,
+                }),
+            }
+        );
+
+        const response = await request.json();
+
+        console.log(response);
     };
 
     return (
@@ -94,7 +115,12 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                             onClick={handleDelete}
                         />
                     )}
-                    {!isUser && <StarOutlineIcon sx={{ ml: "auto" }} />}
+                    {!isUser && (
+                        <StarOutlineIcon
+                            sx={{ ml: "auto" }}
+                            onClick={handleFavorites}
+                        />
+                    )}
                 </CardActions>
             </Card>
             <Modal
