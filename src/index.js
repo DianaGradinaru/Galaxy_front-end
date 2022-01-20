@@ -53,7 +53,7 @@ const Galaxy = () => {
                             ></Route>
                         </Routes>
                     </div>
-                    <div className="col-md-3">Sidebar</div>
+                    <div className="col-md-3"></div>
                 </div>
             </div>
         </>
