@@ -11,10 +11,11 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import { Star as StarFilledIcon } from "@mui/icons-material/Star";
+import StarRateIcon from "@mui/icons-material/StarRate";
 
 import Modal from "@mui/material/Modal";
 
+import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import state from "../state";
 
@@ -37,10 +38,30 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
     const [posts, setPosts] = useAtom(state.posts);
     const isUser = user && user.id && user.name === name;
 
+    const [isFavorite, setIsFavorite] = useState(false);
+
     const created = moment(createdat).fromNow();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    useEffect(() => {
+        const loader = async () => {
+            const request = await fetch(
+                process.env.REACT_APP_SERVER_URL + "/profile/favorites",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id: user.id }),
+                }
+            );
+            if (request.ok) {
+                const response = await request.json();
+                setIsFavorite(!!response.filter((r) => r.id === id).length);
+            }
+        };
+        loader();
+    }, []);
 
     const handleDelete = async () => {
         const request = await fetch(
@@ -76,8 +97,13 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                 }),
             }
         );
+        if (request.ok) {
+            setIsFavorite(true);
+        }
+    };
 
-        const response = await request.json();
+    const fakeAction = (e) => {
+        e.preventDefault();
     };
 
     return (
@@ -95,7 +121,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                     <CardContent>
                         <Typography
                             variant="body1"
-                            color="text.secondary"
+                            color="text.primary"
                             style={{ wordWrap: "break-word" }}
                         >
                             {text}
@@ -103,7 +129,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Typography gutterBottom variant="body1" component="div">
+                    <Typography gutterBottom variant="body2" component="div">
                         {name} - <small title={createdat}>{created}</small>
                     </Typography>
                     {isUser && (
@@ -115,11 +141,19 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                             />
                         </Tooltip>
                     )}
-                    {!isUser && (
+                    {!isUser && !isFavorite && (
                         <Tooltip title="Add star to favorites">
                             <StarOutlineIcon
                                 sx={{ ml: "auto" }}
                                 onClick={addFavorites}
+                            />
+                        </Tooltip>
+                    )}
+                    {!isUser && isFavorite && (
+                        <Tooltip title="Added to favorites">
+                            <StarRateIcon
+                                sx={{ ml: "auto" }}
+                                onClick={fakeAction}
                             />
                         </Tooltip>
                     )}
