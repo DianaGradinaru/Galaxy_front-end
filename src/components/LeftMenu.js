@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -9,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import AutoAwesomeTwoToneIcon from "@mui/icons-material/AutoAwesomeTwoTone";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import GroupIcon from "@mui/icons-material/Group";
 
@@ -49,30 +49,42 @@ const LeftMenu = () => {
                     <nav aria-label="main mailbox folders">
                         <List>
                             <ListItem>
-                                <ListItemButton onClick={handleClickOpen}>
+                                <ListItemButton component="a" href="/">
                                     <ListItemIcon>
-                                        <AccountCircleIcon />
+                                        <AutoAwesomeIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="My Profile" />
+                                    <ListItemText primary="All Galaxies" />
                                 </ListItemButton>
                             </ListItem>
+
                             <ListItem>
                                 <ListItemButton
                                     component="a"
                                     href="/profile/myPosts"
                                 >
                                     <ListItemIcon>
-                                        <AutoAwesomeIcon />
+                                        <AutoAwesomeTwoToneIcon />
                                     </ListItemIcon>
                                     <ListItemText primary="My Galaxy" />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton>
+                                <ListItemButton
+                                    component="a"
+                                    href="/profile/favorites"
+                                >
                                     <ListItemIcon>
                                         <GroupIcon />
                                     </ListItemIcon>
                                     <ListItemText primary="Favorite Galaxies" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton onClick={handleClickOpen}>
+                                    <ListItemIcon>
+                                        <AccountCircleIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="My Profile" />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>

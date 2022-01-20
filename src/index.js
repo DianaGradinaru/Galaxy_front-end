@@ -7,7 +7,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import PostForm from "./components/PostForm";
-import Feed from "./components/Feed";
+import GeneralFeed from "./components/GeneralFeed";
 import LeftMenu from "./components/LeftMenu";
 import UserPage from "./components/UserPage";
 
@@ -17,7 +17,7 @@ const Galaxy = () => {
             <Navbar />
             <div className="container">
                 <div className="row mt-5">
-                    <div className="col-md-3 mt-5">
+                    <div className="col-md-3">
                         <LeftMenu />
                     </div>
 
@@ -38,7 +38,22 @@ const Galaxy = () => {
                                 element={
                                     <>
                                         <PostForm />
-                                        <Feed is_private={true} />
+                                        <GeneralFeed
+                                            url="/profile/myPosts"
+                                            post={true}
+                                        />
+                                    </>
+                                }
+                            ></Route>
+                            <Route
+                                path="/profile/favorites"
+                                element={
+                                    <>
+                                        <PostForm />
+                                        <GeneralFeed
+                                            url="/profile/favorites"
+                                            post={true}
+                                        />
                                     </>
                                 }
                             ></Route>
@@ -47,7 +62,7 @@ const Galaxy = () => {
                                 element={
                                     <>
                                         <PostForm />
-                                        <Feed is_private={false} />
+                                        <GeneralFeed />
                                     </>
                                 }
                             ></Route>

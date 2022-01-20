@@ -11,7 +11,7 @@ const Logout = () => {
         setUser({});
         localStorage.removeItem("loggedUser");
         navigate("/");
-    }, []);
+    }, [navigate, setUser]);
 
     return null;
 };

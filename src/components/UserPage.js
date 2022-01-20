@@ -5,7 +5,6 @@ import state from "../state";
 const UserPage = () => {
     const [user, setUser] = useAtom(state.user);
 
-    console.log(user.id);
     useEffect(() => {
         const fetchUserData = async () => {
             const request = await fetch(

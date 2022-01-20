@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import Tooltip from "@mui/material/Tooltip";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -32,7 +33,6 @@ const style = {
 };
 
 const Star = ({ id, user_id, text, image, createdat, name }) => {
-    // console.log(id, user_id);
     const [user, setUser] = useAtom(state.user);
     const [posts, setPosts] = useAtom(state.posts);
     const isUser = user && user.id && user.name === name;
@@ -44,7 +44,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
 
     const handleDelete = async () => {
         const request = await fetch(
-            process.env.REACT_APP_SERVER_URL + "delete",
+            process.env.REACT_APP_SERVER_URL + "/delete",
             {
                 method: "POST",
                 headers: {
@@ -62,24 +62,22 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
         setUser({ ...user, count: parseInt(user.count) - 1 });
     };
 
-    const handleFavorites = async () => {
+    const addFavorites = async () => {
         const request = await fetch(
-            process.env.REACT_APP_SERVER_URL + "profile/favorites",
+            process.env.REACT_APP_SERVER_URL + "/profile/favorites/add",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    favorited_by: user_id,
+                    favorited_by: user.id,
                     star_id: id,
                 }),
             }
         );
 
         const response = await request.json();
-
-        console.log(response);
     };
 
     return (
@@ -109,17 +107,21 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                         {name} - <small title={createdat}>{created}</small>
                     </Typography>
                     {isUser && (
-                        <DeleteIcon
-                            sx={{ ml: "auto" }}
-                            color="action"
-                            onClick={handleDelete}
-                        />
+                        <Tooltip title="Delete star">
+                            <DeleteIcon
+                                sx={{ ml: "auto" }}
+                                color="action"
+                                onClick={handleDelete}
+                            />
+                        </Tooltip>
                     )}
                     {!isUser && (
-                        <StarOutlineIcon
-                            sx={{ ml: "auto" }}
-                            onClick={handleFavorites}
-                        />
+                        <Tooltip title="Add star to favorites">
+                            <StarOutlineIcon
+                                sx={{ ml: "auto" }}
+                                onClick={addFavorites}
+                            />
+                        </Tooltip>
                     )}
                 </CardActions>
             </Card>

@@ -3,7 +3,6 @@ import { useAtom } from "jotai";
 import state from "../state";
 
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import { positions } from "@mui/system";
 
 const Navbar = () => {
     const [user] = useAtom(state.user);
