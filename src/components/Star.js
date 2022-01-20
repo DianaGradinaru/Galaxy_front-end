@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
 import DeleteIcon from "@mui/icons-material/Delete";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import { Star as StarFilledIcon } from "@mui/icons-material/Star";
 
 import Modal from "@mui/material/Modal";
 
@@ -30,7 +32,7 @@ const style = {
 };
 
 const Star = ({ id, user_id, text, image, createdat, name }) => {
-    const [user] = useAtom(state.user);
+    const [user, setUser] = useAtom(state.user);
     const [posts, setPosts] = useAtom(state.posts);
     const isUser = user && user.id && user.name === name;
 
@@ -56,6 +58,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
         const response = await request.json();
 
         setPosts(posts.filter((p) => p.id !== id));
+        setUser({ ...user, count: parseInt(user.count) - 1 });
     };
 
     return (
@@ -85,10 +88,13 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                         {name} - <small title={createdat}>{created}</small>
                     </Typography>
                     {isUser && (
-                        <Box display="flex" justifyContent="flex-end">
-                            <DeleteIcon color="action" onClick={handleDelete} />
-                        </Box>
+                        <DeleteIcon
+                            sx={{ ml: "auto" }}
+                            color="action"
+                            onClick={handleDelete}
+                        />
                     )}
+                    {!isUser && <StarOutlineIcon sx={{ ml: "auto" }} />}
                 </CardActions>
             </Card>
             <Modal

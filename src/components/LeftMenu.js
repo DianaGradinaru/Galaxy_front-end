@@ -72,7 +72,7 @@ const LeftMenu = () => {
                                     <ListItemIcon>
                                         <GroupIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="My Friends" />
+                                    <ListItemText primary="Favorite Galaxies" />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>

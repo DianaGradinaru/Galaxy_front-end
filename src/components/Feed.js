@@ -25,7 +25,6 @@ const Feed = ({ is_private = false }) => {
                 is_private ? requestOptions : { method: "GET" }
             );
             const res = await req.json();
-            console.log(res);
 
             if (res) {
                 setPosts(res);
