@@ -67,7 +67,19 @@ const Register = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="password" className="form-label">
-                                Password
+                                Create Password
+                            </label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="password"
+                                required
+                                name="password"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="password" className="form-label">
+                                Confirm Password
                             </label>
                             <input
                                 type="password"
