@@ -1,6 +1,10 @@
+import * as React from "react";
 import { useState } from "react";
 import { useAtom } from "jotai";
 import state from "../state";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 
 const PostForm = () => {
     const [text, setText] = useState("");
@@ -12,6 +16,7 @@ const PostForm = () => {
 
         const formData = new FormData(e.target);
         formData.append("userid", user.id);
+        console.log(e.target);
 
         const req = await fetch(process.env.REACT_APP_SERVER_URL, {
             method: "POST",
@@ -35,37 +40,51 @@ const PostForm = () => {
     if (!user || !user.id) return null;
 
     return (
-        <div className="mt-3">
+        <Box
+            // component="form"
+            sx={{ "& .MuiTextField-root": { m: 1, width: "62ch" } }}
+            noValidate
+            autoComplete="off"
+            // onSubmit={handlePost}
+        >
             <form onSubmit={handlePost} encType="multipart/form-data">
-                <label htmlFor="text" className="form-label">
-                    Message
-                </label>
-                <textarea
+                <TextField
+                    label="What's on your mind?"
+                    multiline
+                    rows={4}
                     name="text"
                     id="text"
                     className="form-control"
-                    maxLength={200}
                     defaultValue={text}
                     onChange={updateText}
-                ></textarea>
+                />
                 <p className="form-text">
                     {200 - text.length} characters remaining
                 </p>
-
-                <label className="form-label mt-2" htmlFor="file">
-                    File
-                </label>
                 <input
-                    type="file"
-                    name="file"
-                    id="file"
+                    accept="image/*"
+                    // className={classes.input}
+                    style={{ display: "none" }}
+                    id="raised-button-file"
+                    // multiple
                     className="form-control"
+                    type="file"
                 />
-                <button className="btn btn-secondary mt-3" type="submit">
-                    Post
-                </button>
+                <label htmlFor="raised-button-file">
+                    <Button variant="raised" component="span">
+                        Upload image
+                    </Button>
+                </label>
+                <Button
+                    type="submit"
+                    variant="primary"
+                    component="span"
+                    // form="form"
+                >
+                    Send star
+                </Button>
             </form>
-        </div>
+        </Box>
     );
 };
 
