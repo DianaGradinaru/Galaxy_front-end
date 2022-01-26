@@ -17,6 +17,7 @@ const PostForm = () => {
         const formData = new FormData(e.target);
         formData.append("userid", user.id);
         console.log(e.target);
+        console.log(formData);
 
         const req = await fetch(process.env.REACT_APP_SERVER_URL, {
             method: "POST",
@@ -47,7 +48,11 @@ const PostForm = () => {
             autoComplete="off"
             // onSubmit={handlePost}
         >
-            <form onSubmit={handlePost} encType="multipart/form-data">
+            <form
+                onSubmit={handlePost}
+                encType="multipart/form-data"
+                id="starForm"
+            >
                 <TextField
                     label="What's on your mind?"
                     multiline
@@ -57,6 +62,7 @@ const PostForm = () => {
                     className="form-control"
                     defaultValue={text}
                     onChange={updateText}
+                    form="starForm"
                 />
                 <p className="form-text">
                     {200 - text.length} characters remaining
@@ -69,6 +75,7 @@ const PostForm = () => {
                     // multiple
                     className="form-control"
                     type="file"
+                    form="starForm"
                 />
                 <label htmlFor="raised-button-file">
                     <Button variant="raised" component="span">
@@ -78,8 +85,8 @@ const PostForm = () => {
                 <Button
                     type="submit"
                     variant="primary"
-                    component="span"
-                    // form="form"
+                    component="button"
+                    form="starForm"
                 >
                     Send star
                 </Button>
