@@ -152,7 +152,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                     {!isUser && isFavorite && (
                         <Tooltip title="Added to favorites">
                             <StarRateIcon
-                                style={{ fill: "#edea53" }}
+                                style={{ fill: "goldenrod" }}
                                 sx={{ ml: "auto" }}
                                 onClick={fakeAction}
                             />

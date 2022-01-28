@@ -4,6 +4,20 @@ import { useNavigate } from "react-router-dom";
 
 import Terms from "./Terms";
 
+var check = () => {
+    console.log(document.getElementById("confirm_password").value);
+    if (
+        document.getElementById("password").value ===
+        document.getElementById("confirm_password").value
+    ) {
+        document.getElementById("message").style.color = "green";
+        document.getElementById("message").innerHTML = "Passwords matching";
+    } else {
+        document.getElementById("message").style.color = "red";
+        document.getElementById("message").innerHTML = "Passwords not matching";
+    }
+};
+
 const Register = () => {
     const [, setUser] = useAtom(state.user);
     const navigate = useNavigate();
@@ -84,10 +98,12 @@ const Register = () => {
                             <input
                                 type="password"
                                 className="form-control"
-                                id="password"
+                                id="confirm_password"
                                 required
-                                name="password"
+                                name="confirm_password"
+                                onKeyUp={check}
                             />
+                            <span id="message"></span>
                         </div>
                         <label className="form-label mt-2" htmlFor="file">
                             Profile picture
