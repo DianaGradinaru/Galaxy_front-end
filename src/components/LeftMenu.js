@@ -1,4 +1,6 @@
-import * as React from "react";
+import SendStar from "./SendStar";
+
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -11,6 +13,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AutoAwesomeTwoToneIcon from "@mui/icons-material/AutoAwesomeTwoTone";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import GroupIcon from "@mui/icons-material/Group";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -24,7 +27,8 @@ import { useAtom } from "jotai";
 import state from "../state";
 
 const LeftMenu = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [showDialog, setShowDialog] = useAtom(state.showDialog);
     const [user] = useAtom(state.user);
     const isUser = user && user.id;
 
@@ -49,6 +53,18 @@ const LeftMenu = () => {
                 >
                     <nav aria-label="main mailbox folders">
                         <List>
+                            <ListItem>
+                                <ListItemButton
+                                    component="a"
+                                    onClick={() => setShowDialog(!showDialog)}
+                                >
+                                    <ListItemIcon>
+                                        <RocketLaunchIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Send Star" />
+                                </ListItemButton>
+                            </ListItem>
+
                             <ListItem>
                                 <ListItemButton component="a" href="/">
                                     <ListItemIcon>
@@ -141,6 +157,7 @@ const LeftMenu = () => {
                     </Dialog>
                 </Box>
             )}
+            <SendStar open={showDialog} />
         </>
     );
 };

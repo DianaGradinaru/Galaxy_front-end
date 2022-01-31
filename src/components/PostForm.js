@@ -11,6 +11,7 @@ const PostForm = () => {
     const [text, setText] = useState("");
     const [posts, setPosts] = useAtom(state.posts);
     const [user, setUser] = useAtom(state.user);
+    const [open, setOpen] = useAtom(state.showDialog);
 
     const handlePost = async (e) => {
         e.preventDefault();
@@ -29,6 +30,7 @@ const PostForm = () => {
             setUser({ ...user, count: parseInt(user.count) + 1 });
             e.target.reset();
             setText("");
+            setOpen(!open);
         }
     };
 

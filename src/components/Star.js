@@ -12,7 +12,6 @@ import CardActions from "@mui/material/CardActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import StarRateIcon from "@mui/icons-material/StarRate";
-import AbcIcon from "@mui/icons-material/Abc";
 import Modal from "@mui/material/Modal";
 
 import { useState, useEffect } from "react";
@@ -39,7 +38,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
     const notLoggedIn = state.user.init.id === undefined;
     const isUser = user && user.id && user.name === name;
 
-    console.log(state.user.init.name);
+    // console.log(state.user.init.name);
 
     const [isFavorite, setIsFavorite] = useState(false);
 

@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
@@ -13,8 +12,6 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { useAtom } from "jotai";
 import state from "../state";
 import Link from "@mui/material/Link";
-
-const settings = ["Profile", "Logout"];
 
 const ResponsiveAppBar = () => {
     const [user] = useAtom(state.user);

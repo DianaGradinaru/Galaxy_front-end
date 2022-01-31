@@ -2,11 +2,9 @@ import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
-import PostForm from "./components/PostForm";
 import GeneralFeed from "./components/GeneralFeed";
 import LeftMenu from "./components/LeftMenu";
 import UserPage from "./components/UserPage";
@@ -16,7 +14,6 @@ import ResponsiveAppBar from "./components/_Navbar";
 const Galaxy = () => {
     return (
         <>
-            {/* <Navbar /> */}
             <ResponsiveAppBar />
             <div className="container mt-5 pt-1">
                 <div className="row mt-5">
@@ -40,7 +37,7 @@ const Galaxy = () => {
                                 path="/profile/myPosts"
                                 element={
                                     <>
-                                        <PostForm />
+                                        {/* <PostForm /> */}
                                         <GeneralFeed
                                             url="/profile/myPosts"
                                             post={true}
@@ -52,7 +49,7 @@ const Galaxy = () => {
                                 path="/profile/favorites"
                                 element={
                                     <>
-                                        <PostForm />
+                                        {/* <PostForm /> */}
                                         <GeneralFeed
                                             url="/profile/favorites"
                                             post={true}
@@ -64,7 +61,7 @@ const Galaxy = () => {
                                 path="/"
                                 element={
                                     <>
-                                        <PostForm />
+                                        {/* <PostForm /> */}
                                         <GeneralFeed />
                                     </>
                                 }
