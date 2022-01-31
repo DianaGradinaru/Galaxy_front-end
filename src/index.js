@@ -16,8 +16,8 @@ import ResponsiveAppBar from "./components/_Navbar";
 const Galaxy = () => {
     return (
         <>
-            <Navbar />
-            {/* <ResponsiveAppBar /> */}
+            {/* <Navbar /> */}
+            <ResponsiveAppBar />
             <div className="container mt-5 pt-1">
                 <div className="row mt-5">
                     <div className="col-md-3">

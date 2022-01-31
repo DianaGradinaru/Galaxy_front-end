@@ -39,7 +39,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
     const notLoggedIn = state.user.init.id === undefined;
     const isUser = user && user.id && user.name === name;
 
-    console.log(isUser);
+    console.log(state.user.init.name);
 
     const [isFavorite, setIsFavorite] = useState(false);
 

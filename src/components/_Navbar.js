@@ -57,46 +57,76 @@ const ResponsiveAppBar = () => {
                         }}
                     ></Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton
-                                onClick={handleOpenUserMenu}
-                                sx={{ p: 0 }}
-                            >
-                                <Avatar
-                                    alt={state.user.init.name}
-                                    src={"data:image/png;base64," + profile_pic}
-                                />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: "45px" }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}
+                    {isUser && (
+                        <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <IconButton
+                                    onClick={handleOpenUserMenu}
+                                    sx={{ p: 0 }}
                                 >
-                                    <Typography textAlign="center">
-                                        {setting}
-                                    </Typography>
+                                    <Avatar
+                                        alt={state.user.init.name}
+                                        src={
+                                            "data:image/png;base64," +
+                                            profile_pic
+                                        }
+                                    />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: "45px" }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: "top",
+                                    horizontal: "right",
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: "top",
+                                    horizontal: "right",
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link
+                                        href="/logout"
+                                        sx={{
+                                            typography: "body1",
+                                            color: "black",
+                                        }}
+                                    >
+                                        Logout
+                                    </Link>
                                 </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
+                            </Menu>
+                        </Box>
+                    )}
+                    {!isUser && (
+                        <Box>
+                            <Link
+                                href="/login"
+                                sx={{
+                                    typography: "body1",
+                                    color: "white",
+                                    margin: "15px",
+                                }}
+                            >
+                                Log in
+                            </Link>
+
+                            <Link
+                                href="/register"
+                                sx={{
+                                    typography: "body1",
+                                    color: "white",
+                                }}
+                            >
+                                Register
+                            </Link>
+                        </Box>
+                    )}
                 </Toolbar>
             </Container>
         </AppBar>
