@@ -102,8 +102,23 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
         }
     };
 
-    const fakeAction = (e) => {
-        e.preventDefault();
+    const removeFavorites = async () => {
+        const request = await fetch(
+            process.env.REACT_APP_SERVER_URL + "/profile/favorites/remove",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    favorited_by: user.id,
+                    star_id: id,
+                }),
+            }
+        );
+        if (request.ok) {
+            setIsFavorite(false);
+        }
     };
 
     return (
@@ -154,7 +169,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                             <StarRateIcon
                                 style={{ fill: "goldenrod" }}
                                 sx={{ ml: "auto" }}
-                                onClick={fakeAction}
+                                onClick={removeFavorites}
                             />
                         </Tooltip>
                     )}
