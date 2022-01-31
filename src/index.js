@@ -11,11 +11,14 @@ import GeneralFeed from "./components/GeneralFeed";
 import LeftMenu from "./components/LeftMenu";
 import UserPage from "./components/UserPage";
 
+import ResponsiveAppBar from "./components/_Navbar";
+
 const Galaxy = () => {
     return (
         <>
             <Navbar />
-            <div className="container">
+            {/* <ResponsiveAppBar /> */}
+            <div className="container mt-5 pt-1">
                 <div className="row mt-5">
                     <div className="col-md-3">
                         <LeftMenu />

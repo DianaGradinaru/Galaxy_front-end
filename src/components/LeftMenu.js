@@ -42,8 +42,9 @@ const LeftMenu = () => {
                 <Box
                     sx={{
                         width: "100%",
-                        maxWidth: 360,
+                        maxWidth: 330,
                         bgcolor: "background.paper",
+                        position: "fixed",
                     }}
                 >
                     <nav aria-label="main mailbox folders">

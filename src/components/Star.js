@@ -12,7 +12,7 @@ import CardActions from "@mui/material/CardActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import StarRateIcon from "@mui/icons-material/StarRate";
-
+import AbcIcon from "@mui/icons-material/Abc";
 import Modal from "@mui/material/Modal";
 
 import { useState, useEffect } from "react";
@@ -36,7 +36,10 @@ const style = {
 const Star = ({ id, user_id, text, image, createdat, name }) => {
     const [user, setUser] = useAtom(state.user);
     const [posts, setPosts] = useAtom(state.posts);
+    const notLoggedIn = state.user.init.id === undefined;
     const isUser = user && user.id && user.name === name;
+
+    console.log(isUser);
 
     const [isFavorite, setIsFavorite] = useState(false);
 
@@ -147,6 +150,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                     <Typography gutterBottom variant="body2" component="div">
                         {name} - <small title={createdat}>{created}</small>
                     </Typography>
+
                     {isUser && (
                         <Tooltip title="Delete star">
                             <DeleteIcon
@@ -156,20 +160,21 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                             />
                         </Tooltip>
                     )}
-                    {!isUser && !isFavorite && (
-                        <Tooltip title="Add star to favorites">
-                            <StarOutlineIcon
-                                sx={{ ml: "auto" }}
-                                onClick={addFavorites}
-                            />
-                        </Tooltip>
-                    )}
-                    {!isUser && isFavorite && (
+                    {notLoggedIn || isUser ? (
+                        <></>
+                    ) : isFavorite ? (
                         <Tooltip title="Added to favorites">
                             <StarRateIcon
                                 style={{ fill: "goldenrod" }}
                                 sx={{ ml: "auto" }}
                                 onClick={removeFavorites}
+                            />
+                        </Tooltip>
+                    ) : (
+                        <Tooltip title="Add star to favorites">
+                            <StarOutlineIcon
+                                sx={{ ml: "auto" }}
+                                onClick={addFavorites}
                             />
                         </Tooltip>
                     )}

@@ -35,8 +35,6 @@ const GeneralFeed = ({ url = "/", post = false }) => {
         loader();
     }, [url]);
 
-    console.log(posts);
-
     return (
         <div className="mt-3">
             {!posts.length ? "" : posts.map((p) => <Star key={p.id} {...p} />)}
