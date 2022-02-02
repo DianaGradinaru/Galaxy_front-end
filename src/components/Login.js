@@ -28,6 +28,7 @@ const Login = () => {
             setUser(res.user);
             localStorage.setItem("loggedUser", JSON.stringify(res.user));
             navigate("/");
+            window.location.reload();
         }
     };
 

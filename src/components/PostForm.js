@@ -43,7 +43,7 @@ const PostForm = () => {
 
     return (
         <Box
-            sx={{ "& .MuiTextField-root": { m: 1, width: "62ch" } }}
+            sx={{ "& .MuiTextField-root": { m: 1, width: "584px" } }}
             noValidate
             autoComplete="off"
         >
@@ -74,16 +74,18 @@ const PostForm = () => {
                         form="starForm"
                     />
                     <Button
-                        variant="raised"
+                        variant="outlined"
                         component="span"
                         startIcon={<UploadIcon />}
+                        style={{ margin: 10 }}
                     >
                         Upload image
                     </Button>
                 </label>
+
                 <Button
                     type="submit"
-                    variant="primary"
+                    variant="outlined"
                     component="button"
                     form="starForm"
                 >

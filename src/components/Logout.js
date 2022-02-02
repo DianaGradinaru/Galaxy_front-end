@@ -11,6 +11,7 @@ const Logout = () => {
         setUser({});
         localStorage.removeItem("loggedUser");
         navigate("/");
+        window.location.reload();
     }, [navigate, setUser]);
 
     return null;

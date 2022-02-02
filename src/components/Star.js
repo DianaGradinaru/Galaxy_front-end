@@ -125,7 +125,12 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
 
     return (
         <Box m={2} pt={3}>
-            <Card sx={{ maxWidth: 545 }}>
+            <Card
+                variant="outlined"
+                elevation={8}
+                width="545px"
+                // sx={{ maxWidth: 545 }}
+            >
                 <CardActionArea>
                     {image && (
                         <CardMedia
