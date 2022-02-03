@@ -7,7 +7,7 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import GeneralFeed from "./components/GeneralFeed";
 import LeftMenu from "./components/LeftMenu";
-import UserPage from "./components/UserPage";
+// import UserPage from "./components/UserPage";
 
 import ResponsiveAppBar from "./components/_Navbar";
 
@@ -29,15 +29,11 @@ const Galaxy = () => {
                             ></Route>
                             <Route path="/login" element={<Login />}></Route>
                             <Route path="/logout" element={<Logout />}></Route>
-                            <Route
-                                path="/profile"
-                                element={<UserPage />}
-                            ></Route>
+
                             <Route
                                 path="/profile/myPosts"
                                 element={
                                     <>
-                                        {/* <PostForm /> */}
                                         <GeneralFeed
                                             url="/profile/myPosts"
                                             post={true}
@@ -49,7 +45,6 @@ const Galaxy = () => {
                                 path="/profile/favorites"
                                 element={
                                     <>
-                                        {/* <PostForm /> */}
                                         <GeneralFeed
                                             url="/profile/favorites"
                                             post={true}
@@ -61,7 +56,6 @@ const Galaxy = () => {
                                 path="/"
                                 element={
                                     <>
-                                        {/* <PostForm /> */}
                                         <GeneralFeed />
                                     </>
                                 }

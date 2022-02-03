@@ -5,6 +5,7 @@ const state = {
     favorites: atom([]),
     user: atom(JSON.parse(localStorage.getItem("loggedUser")) || {}),
     showDialog: atom(false),
+    showProfile: atom(false),
 };
 
 export default state;

@@ -17,6 +17,7 @@ import Modal from "@mui/material/Modal";
 import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import state from "../state";
+import UserPage from "./UserPage";
 
 const style = {
     position: "absolute",
@@ -37,8 +38,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
     const [posts, setPosts] = useAtom(state.posts);
     const notLoggedIn = state.user.init.id === undefined;
     const isUser = user && user.id && user.name === name;
-
-    // console.log(state.user.init.name);
+    const [showProfile, setShowProfile] = useAtom(state.showProfile);
 
     const [isFavorite, setIsFavorite] = useState(false);
 
@@ -64,6 +64,22 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
         };
         loader();
     }, []);
+
+    const fetchUserData = async (id) => {
+        const request = await fetch(
+            process.env.REACT_APP_SERVER_URL + "/profile",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id }),
+            }
+        );
+        const response = await request.json();
+        console.log(response);
+        setShowProfile(response.user);
+    };
 
     const handleDelete = async () => {
         const request = await fetch(
@@ -125,12 +141,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
 
     return (
         <Box m={2} pt={3}>
-            <Card
-                variant="outlined"
-                elevation={8}
-                width="545px"
-                // sx={{ maxWidth: 545 }}
-            >
+            <Card variant="outlined" width="545px">
                 <CardActionArea>
                     {image && (
                         <CardMedia
@@ -151,8 +162,14 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Typography gutterBottom variant="body2" component="div">
-                        {name} - <small title={createdat}>{created}</small>
+                    <Typography gutterBottom variant="body2">
+                        <span
+                            data-id={user_id}
+                            onClick={(e) => fetchUserData(e.target.dataset.id)}
+                        >
+                            {name}
+                        </span>
+                        - <small title={createdat}>{created}</small>
                     </Typography>
 
                     {isUser && (
@@ -197,6 +214,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                     />
                 </Card>
             </Modal>
+            {/* <UserPage open={showProfile} /> */}
         </Box>
     );
 };

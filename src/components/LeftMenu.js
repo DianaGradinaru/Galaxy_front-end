@@ -123,13 +123,11 @@ const LeftMenu = () => {
                         aria-describedby="alert-dialog-description"
                     >
                         <DialogTitle id="alert-dialog-description">
-                            <Typography variant="h6" align="center">
-                                {"About"}
-                            </Typography>
+                            <Typography align="center">{"About"}</Typography>
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-title">
-                                <Typography variant="h6" align="center">
+                                <Typography align="center">
                                     {user.name}
                                 </Typography>
                                 <Box
