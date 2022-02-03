@@ -8,7 +8,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import DraftsIcon from "@mui/icons-material/Drafts";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AutoAwesomeTwoToneIcon from "@mui/icons-material/AutoAwesomeTwoTone";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
@@ -104,14 +103,14 @@ const LeftMenu = () => {
                                     <ListItemText primary="My Profile" />
                                 </ListItemButton>
                             </ListItem>
-                            <ListItem>
+                            {/* <ListItem>
                                 <ListItemButton>
                                     <ListItemIcon>
                                         <DraftsIcon />
                                     </ListItemIcon>
                                     <ListItemText primary="My Messages" />
                                 </ListItemButton>
-                            </ListItem>
+                            </ListItem> */}
                         </List>
                     </nav>
                     <Divider />

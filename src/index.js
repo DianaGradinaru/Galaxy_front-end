@@ -7,7 +7,7 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import GeneralFeed from "./components/GeneralFeed";
 import LeftMenu from "./components/LeftMenu";
-// import UserPage from "./components/UserPage";
+import Messaging from "./components/Messaging";
 
 import ResponsiveAppBar from "./components/_Navbar";
 
@@ -62,7 +62,9 @@ const Galaxy = () => {
                             ></Route>
                         </Routes>
                     </div>
-                    <div className="col-md-3"></div>
+                    <div className="col-md-3">
+                        <Messaging />
+                    </div>
                 </div>
             </div>
         </>
