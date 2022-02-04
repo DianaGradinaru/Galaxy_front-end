@@ -53,6 +53,7 @@ body {
 .chat-window {
     width: 300px;
     height: 420px;
+    position: fixed;
 }
 
 .chat-window p {

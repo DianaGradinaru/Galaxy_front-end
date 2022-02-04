@@ -5,21 +5,23 @@ function Chat({ socket, username, room }) {
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
 
+    let date = new Date(Date.now());
+    let hours = `0${date.getHours()}`.slice(-2);
+    let minutes = `0${date.getMinutes()}`.slice(-2);
+
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
                 room: room,
                 author: username,
                 message: currentMessage,
-                time:
-                    new Date(Date.now()).getHours() +
-                    ":" +
-                    new Date(Date.now()).getMinutes(),
+                time: hours + ":" + minutes,
             };
 
             await socket.emit("send_message", messageData);
             setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
+            console.log(messageData);
         }
     };
 
@@ -40,8 +42,8 @@ function Chat({ socket, username, room }) {
                                 className="message"
                                 id={
                                     username === messageContent.author
-                                        ? "you"
-                                        : "other"
+                                        ? "other"
+                                        : "you"
                                 }
                             >
                                 <div>

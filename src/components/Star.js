@@ -77,7 +77,6 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
             }
         );
         const response = await request.json();
-        console.log(response);
         setShowProfile(response.user);
     };
 

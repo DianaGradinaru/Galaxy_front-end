@@ -17,6 +17,7 @@ const socket = io.connect("http://localhost:3001");
 
 function Messaging() {
     const [user] = useAtom(state.user);
+    const isUser = user && user.id;
     const [showChat, setShowChat] = useState(false);
     const room = "123";
 
@@ -25,11 +26,19 @@ function Messaging() {
         setShowChat(true);
     };
 
+    if (!isUser) return <></>;
+
     return (
         <div>
             {!showChat ? (
-                // <button onClick={joinRoom}>Message online users</button>
-                <Box>
+                <Box
+                    sx={{
+                        width: "100%",
+                        maxWidth: 250,
+                        bgcolor: "background.paper",
+                        position: "fixed",
+                    }}
+                >
                     <List>
                         <ListItem>
                             <ListItemButton onClick={joinRoom}>
