@@ -19,7 +19,15 @@ function Messaging() {
     const [user] = useAtom(state.user);
     const isUser = user && user.id;
     const [showChat, setShowChat] = useState(false);
-    const room = "123";
+    var element = document.querySelector(".forMsg");
+    var room = "123";
+    // if (user.id !== undefined) {
+    //     var room =
+    //         "" +
+    //         Math.min(element.getAttribute("data-id"), user.id) +
+    //         Math.max(element.getAttribute("data-id"), user.id);
+    // }
+    // console.log(room);
 
     const joinRoom = () => {
         socket.emit("join_room", room);

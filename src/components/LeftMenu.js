@@ -125,7 +125,10 @@ const LeftMenu = () => {
                             <Typography align="center">{"About"}</Typography>
                         </DialogTitle>
                         <DialogContent>
-                            <DialogContentText id="alert-dialog-title">
+                            <DialogContentText
+                                component={"div"}
+                                id="alert-dialog-title"
+                            >
                                 <Typography align="center">
                                     {user.name}
                                 </Typography>

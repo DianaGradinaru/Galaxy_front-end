@@ -163,6 +163,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                 <CardActions>
                     <Typography gutterBottom variant="body2">
                         <span
+                            className="forMsg"
                             data-id={user_id}
                             onClick={(e) => fetchUserData(e.target.dataset.id)}
                         >
