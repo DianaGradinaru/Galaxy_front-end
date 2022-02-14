@@ -59,7 +59,12 @@ function Messaging() {
                     </List>
                 </Box>
             ) : (
-                <Chat socket={socket} username={user.name} room={room} />
+                <Chat
+                    socket={socket}
+                    username={user.name}
+                    room={room}
+                    user_id={user.id}
+                />
             )}
         </div>
     );

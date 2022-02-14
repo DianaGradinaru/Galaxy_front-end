@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-function Chat({ socket, username, room }) {
+function Chat({ socket, username, room, user_id }) {
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
 
@@ -14,6 +14,7 @@ function Chat({ socket, username, room }) {
             const messageData = {
                 room: room,
                 author: username,
+                user_id: user_id,
                 message: currentMessage,
                 time: hours + ":" + minutes,
             };
@@ -22,7 +23,27 @@ function Chat({ socket, username, room }) {
             setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
             console.log(messageData);
+            // console.log(user)
         }
+    };
+
+    const sendMessageToDb = async () => {
+        const request = await fetch(
+            process.env.REACT_APP_SERVER_URL + "/messages",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    room: room,
+                    author: username,
+                    user_id: user_id,
+                    message: currentMessage,
+                }),
+            }
+        );
+        const response = await request.json();
     };
 
     useEffect(() => {
@@ -72,10 +93,14 @@ function Chat({ socket, username, room }) {
                         setCurrentMessage(event.target.value);
                     }}
                     onKeyPress={(event) => {
-                        event.key === "Enter" && sendMessage();
+                        event.key === "Enter" &&
+                            sendMessage() &&
+                            sendMessageToDb();
                     }}
                 />
-                <button onClick={sendMessage}>&#9658;</button>
+                <button onClick={sendMessage && sendMessageToDb}>
+                    &#9658;
+                </button>
             </div>
         </div>
     );
