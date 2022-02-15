@@ -7,17 +7,27 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import UploadIcon from "@mui/icons-material/Upload";
 
+import cloudinaryUpload from "./UploadImages";
+
 const PostForm = () => {
     const [text, setText] = useState("");
     const [posts, setPosts] = useAtom(state.posts);
     const [user, setUser] = useAtom(state.user);
     const [open, setOpen] = useAtom(state.showDialog);
 
+    const [imageUrl, setimageUrl] = useState("");
+
     const handlePost = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
         formData.append("userid", user.id);
+
+        // formData.append("file", e.target.files[0]);
+        console.log(e.target.files.file);
+        console.log(formData);
+        // sent the image to the cloud
+        cloudinaryUpload(formData).then((res) => setimageUrl(res.secure_url));
 
         const req = await fetch(process.env.REACT_APP_SERVER_URL, {
             method: "POST",
@@ -31,6 +41,7 @@ const PostForm = () => {
             e.target.reset();
             setText("");
             setOpen(!open);
+            console.log(res);
         }
     };
 
