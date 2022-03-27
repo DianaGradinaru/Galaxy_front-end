@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useAtom } from "jotai";
 import state from "../state";
 import {

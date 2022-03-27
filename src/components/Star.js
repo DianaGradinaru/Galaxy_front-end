@@ -19,8 +19,6 @@ import Modal from "@mui/material/Modal";
 import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import state from "../state";
-import UserPage from "./UserPage";
-import PostReply from "./Replies";
 import { addReplies } from "./Replies";
 
 const style = {
@@ -42,7 +40,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
     const [posts, setPosts] = useAtom(state.posts);
     const notLoggedIn = state.user.init.id === undefined;
     const isUser = user && user.id && user.name === name;
-    const [showProfile, setShowProfile] = useAtom(state.showProfile);
+    const [, setShowProfile] = useAtom(state.showProfile);
 
     const [isFavorite, setIsFavorite] = useState(false);
 
@@ -97,8 +95,6 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                 }),
             }
         );
-
-        const response = await request.json();
 
         setPosts(posts.filter((p) => p.id !== id));
         setUser({ ...user, count: parseInt(user.count) - 1 });
