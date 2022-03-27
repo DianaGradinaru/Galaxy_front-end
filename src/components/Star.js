@@ -12,12 +12,16 @@ import CardActions from "@mui/material/CardActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import ReplyIcon from "@mui/icons-material/Reply";
+
 import Modal from "@mui/material/Modal";
 
 import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import state from "../state";
 import UserPage from "./UserPage";
+import PostReply from "./Replies";
+import { addReplies } from "./Replies";
 
 const style = {
     position: "absolute",
@@ -184,20 +188,40 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                     {notLoggedIn || isUser ? (
                         <></>
                     ) : isFavorite ? (
-                        <Tooltip title="Added to favorites">
-                            <StarRateIcon
-                                style={{ fill: "goldenrod" }}
-                                sx={{ ml: "auto" }}
-                                onClick={removeFavorites}
-                            />
-                        </Tooltip>
+                        <>
+                            <Tooltip title="Reply to star">
+                                <ReplyIcon
+                                    data-id={id}
+                                    sx={{ ml: "auto" }}
+                                    color="action"
+                                    onClick={(e) => addReplies(e, user)}
+                                />
+                            </Tooltip>
+                            <Tooltip title="Added to favorites">
+                                <StarRateIcon
+                                    style={{ fill: "goldenrod" }}
+                                    sx={{ ml: "auto" }}
+                                    onClick={removeFavorites}
+                                />
+                            </Tooltip>
+                        </>
                     ) : (
-                        <Tooltip title="Add star to favorites">
-                            <StarOutlineIcon
-                                sx={{ ml: "auto" }}
-                                onClick={addFavorites}
-                            />
-                        </Tooltip>
+                        <>
+                            <Tooltip title="Reply to star">
+                                <ReplyIcon
+                                    data-id={id}
+                                    sx={{ ml: "auto" }}
+                                    color="action"
+                                    // onClick={}
+                                />
+                            </Tooltip>
+                            <Tooltip title="Add star to favorites">
+                                <StarOutlineIcon
+                                    sx={{ ml: "auto" }}
+                                    onClick={addFavorites}
+                                />
+                            </Tooltip>
+                        </>
                     )}
                 </CardActions>
             </Card>
