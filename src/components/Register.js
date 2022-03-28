@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Terms from "./Terms";
 
 var check = () => {
-    console.log(document.getElementById("confirm_password").value);
+    // console.log(document.getElementById("confirm_password").value);
     if (
         document.getElementById("password").value ===
         document.getElementById("confirm_password").value

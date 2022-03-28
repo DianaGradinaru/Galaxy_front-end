@@ -56,6 +56,7 @@ const PostForm = () => {
                     label="What's on your mind?"
                     multiline
                     rows={4}
+                    inputProps={{ maxLength: 200 }}
                     name="text"
                     id="text"
                     className="form-control"
