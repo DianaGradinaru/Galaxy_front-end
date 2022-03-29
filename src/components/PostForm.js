@@ -18,6 +18,7 @@ const PostForm = () => {
 
         const formData = new FormData(e.target);
         formData.append("userid", user.id);
+        console.log(formData);
 
         const req = await fetch(process.env.REACT_APP_SERVER_URL, {
             method: "POST",
@@ -70,7 +71,7 @@ const PostForm = () => {
                         type="file"
                         accept="image/*"
                         id="raised-button-file"
-                        name="file"
+                        name="image"
                         style={{ display: "none" }}
                         form="starForm"
                     />

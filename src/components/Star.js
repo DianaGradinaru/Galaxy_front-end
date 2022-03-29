@@ -146,7 +146,9 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                         <CardMedia
                             component="img"
                             height="445"
-                            image={"data:image/png;base64," + image}
+                            image={
+                                process.env.REACT_APP_SERVER_URL + "/" + image
+                            }
                             onClick={handleOpen}
                         />
                     )}
@@ -230,7 +232,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                 <Card sx={style}>
                     <CardMedia
                         component="img"
-                        image={"data:image/png;base64," + image}
+                        image={process.env.REACT_APP_SERVER_URL + "/" + image}
                     />
                 </Card>
             </Modal>
