@@ -92,6 +92,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                 },
                 body: JSON.stringify({
                     id,
+                    image,
                 }),
             }
         );
