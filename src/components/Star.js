@@ -49,6 +49,8 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const [imageUrl, setImageUrl] = useState(null);
+
     useEffect(() => {
         const loader = async () => {
             const request = await fetch(
@@ -64,7 +66,20 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                 setIsFavorite(!!response.filter((r) => r.id === id).length);
             }
         };
+
+        const imageLoader = async () => {
+            const request = await fetch(
+                process.env.REACT_APP_SERVER_URL + "/" + image
+            );
+            if (request.ok) {
+                const response = await request.json();
+                setImageUrl(response.url);
+            }
+        };
         loader();
+        if (image) {
+            imageLoader();
+        }
     }, []);
 
     const fetchUserData = async (id) => {
@@ -147,9 +162,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                         <CardMedia
                             component="img"
                             height="445"
-                            image={
-                                process.env.REACT_APP_SERVER_URL + "/" + image
-                            }
+                            image={imageUrl}
                             onClick={handleOpen}
                         />
                     )}
@@ -231,10 +244,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                 aria-describedby="modal-modal-description"
             >
                 <Card sx={style}>
-                    <CardMedia
-                        component="img"
-                        image={process.env.REACT_APP_SERVER_URL + "/" + image}
-                    />
+                    <CardMedia component="img" image={imageUrl} />
                 </Card>
             </Modal>
             {/* <UserPage open={showProfile} /> */}

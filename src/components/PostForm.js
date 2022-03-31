@@ -18,7 +18,6 @@ const PostForm = () => {
 
         const formData = new FormData(e.target);
         formData.append("userid", user.id);
-        console.log(formData);
 
         const req = await fetch(process.env.REACT_APP_SERVER_URL, {
             method: "POST",
