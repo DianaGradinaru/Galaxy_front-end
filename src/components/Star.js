@@ -34,6 +34,7 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
+const cdn = process.env.REACT_APP_AWS_CDN_URL;
 
 const Star = ({ id, user_id, text, image, createdat, name }) => {
     const [user, setUser] = useAtom(state.user);
@@ -48,8 +49,6 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    const [imageUrl, setImageUrl] = useState(null);
 
     useEffect(() => {
         const loader = async () => {
@@ -66,20 +65,6 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                 setIsFavorite(!!response.filter((r) => r.id === id).length);
             }
         };
-
-        const imageLoader = async () => {
-            const request = await fetch(
-                process.env.REACT_APP_SERVER_URL + "/" + image
-            );
-            if (request.ok) {
-                const response = await request.json();
-                setImageUrl(response.url);
-            }
-        };
-        loader();
-        if (image) {
-            imageLoader();
-        }
     }, []);
 
     const fetchUserData = async (id) => {
@@ -162,7 +147,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                         <CardMedia
                             component="img"
                             height="445"
-                            image={imageUrl}
+                            image={`${cdn}${image}`}
                             onClick={handleOpen}
                         />
                     )}
@@ -244,7 +229,7 @@ const Star = ({ id, user_id, text, image, createdat, name }) => {
                 aria-describedby="modal-modal-description"
             >
                 <Card sx={style}>
-                    <CardMedia component="img" image={imageUrl} />
+                    <CardMedia component="img" image={`${cdn}${image}`} />
                 </Card>
             </Modal>
             {/* <UserPage open={showProfile} /> */}
